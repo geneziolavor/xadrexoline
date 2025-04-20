@@ -5,8 +5,8 @@ import {
   getDocs, 
   updateDoc, 
   query, 
-  orderBy, 
-  limit 
+  orderBy,
+  limit
 } from 'firebase/firestore';
 import { db } from './config';
 
@@ -106,10 +106,10 @@ export const updatePlayerRating = async (winnerId, loserId, isDraw = false) => {
 };
 
 // Obter ranking de jogadores
-export const getPlayersRanking = async (limit = 10) => {
+export const getPlayersRanking = async (limitCount = 10) => {
   try {
     const playersRef = collection(db, 'players');
-    const q = query(playersRef, orderBy('rating', 'desc'), limit(limit));
+    const q = query(playersRef, orderBy('rating', 'desc'), limit(limitCount));
     const querySnapshot = await getDocs(q);
     
     const ranking = [];

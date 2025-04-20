@@ -1,98 +1,143 @@
-# Xadrez Online - Aplicativo Educacional de Xadrez
+# Xadrez Online
 
-Um aplicativo web educacional interativo para ensinar e praticar xadrez, desenvolvido com React e tecnologias modernas.
+Uma aplicação de xadrez online com sistema de ranking, registro de jogadores e histórico de partidas.
 
-## Visão Geral
+<p align="center">
+  <img src="./public/chess-screenshot.png" alt="Xadrez Online Screenshot" width="600">
+</p>
 
-Xadrez Online é uma plataforma educacional que permite aos estudantes aprender e jogar xadrez de forma intuitiva e envolvente. O aplicativo foi projetado com foco em escolas e ambientes educacionais, combinando uma interface amigável com recursos pedagógicos.
+## Funcionalidades
 
-## Recursos
+- 🎮 Jogo de xadrez completo com todas as regras oficiais
+- 🤖 Modo de jogo contra IA com diferentes níveis de dificuldade
+- 📊 Sistema de ranking baseado em ELO
+- 👤 Perfis de jogadores com estatísticas
+- 📜 Histórico de partidas
+- 🔒 Sistema de autenticação de usuários
 
-- **Tabuleiro de xadrez interativo** - Interface intuitiva baseada em react-chessboard
-- **Modos de jogo**:
-  - Jogo local (dois jogadores no mesmo dispositivo)
-  - Jogo contra IA com três níveis de dificuldade (fácil, médio, difícil)
-- **Tutorial interativo** - Aprenda sobre movimentos das peças, regras especiais e conceitos básicos
-- **Design responsivo** - Funciona em computadores, tablets e dispositivos móveis
-- **Interface visual atraente** - Cores clássicas de xadrez com detalhes dourados
+## Configuração do Projeto
 
-## Tecnologias Utilizadas
+### Pré-requisitos
 
-- **React** - Framework JavaScript para a interface de usuário
-- **chess.js** - Biblioteca para regras e lógica de xadrez
-- **react-chessboard** - Componente React para o tabuleiro interativo
-- **Stockfish** - Engine de xadrez para o modo contra IA
+- Node.js (v16 ou superior)
+- NPM ou Yarn
+- Conta no Firebase
+- Conta no Netlify (para deployment)
 
-## Requisitos do Sistema
+### Configuração do Firebase
 
-- Node.js (versão 14.0.0 ou superior)
-- npm ou yarn
+1. Crie um projeto no [Console do Firebase](https://console.firebase.google.com/)
+2. Adicione um aplicativo web e obtenha as credenciais
+3. Ative a **Authentication** com método de e-mail/senha
+4. Configure o **Firestore Database**
+5. Crie um arquivo `.env` na raiz do projeto usando o modelo abaixo:
 
-## Instalação
+```
+# Firebase Config
+REACT_APP_FIREBASE_API_KEY=sua_chave_aqui
+REACT_APP_FIREBASE_AUTH_DOMAIN=seu-projeto.firebaseapp.com
+REACT_APP_FIREBASE_PROJECT_ID=seu-projeto
+REACT_APP_FIREBASE_STORAGE_BUCKET=seu-projeto.appspot.com
+REACT_APP_FIREBASE_MESSAGING_SENDER_ID=seu_messaging_sender_id
+REACT_APP_FIREBASE_APP_ID=seu_app_id
+```
 
-1. Clone o repositório:
-   ```
-   git clone https://github.com/seu-usuario/xadrez-online.git
-   cd xadrez-online
-   ```
+### Instalação
 
-2. Instale as dependências:
-   ```
-   npm install
-   ```
+```bash
+# Clonar o repositório
+git clone https://github.com/seu-usuario/xadrez-online.git
+cd xadrez-online
 
-3. Inicie o servidor de desenvolvimento:
-   ```
-   npm start
-   ```
+# Instalar dependências
+npm install
 
-4. Abra o navegador e acesse:
-   ```
-   http://localhost:3000
-   ```
+# Iniciar servidor de desenvolvimento
+npm start
+```
 
-## Como Usar
+## Deploy no Netlify
 
-### Tela Inicial
-A tela inicial apresenta informações sobre o aplicativo e seus recursos educacionais. Clique em "Iniciar Aplicativo" para começar.
+### Método 1: Deploy Automatizado via GitHub
 
-### Configurações de Jogo
-Escolha o modo de jogo:
-- **Jogo Local**: Para jogar com um amigo no mesmo dispositivo
-- **Contra IA**: Escolha entre os níveis fácil, médio e difícil
+1. Faça um fork deste repositório
+2. Conecte sua conta Netlify com GitHub
+3. Selecione o repositório e configure as variáveis de ambiente:
+   - Build command: `npm run build`
+   - Publish directory: `build`
+   - Adicione as variáveis de ambiente do Firebase nas configurações do site
 
-### Durante o Jogo
-- As peças brancas sempre começam
-- Arraste e solte as peças para fazer um movimento
-- O painel lateral mostra informações do jogo, incluindo:
-  - Status atual da partida
-  - Jogador atual
-  - Histórico de movimentos
-  - Botões para novo jogo ou desfazer movimento
+### Método 2: Deploy Manual
 
-### Tutorial
-Acesse o tutorial a qualquer momento para aprender:
-- Movimentos básicos de cada peça
-- Regras especiais (roque, en passant, promoção de peão)
-- Conceitos básicos de estratégia
+1. Construa o projeto: `npm run build`
+2. Arraste e solte a pasta `build` na interface do Netlify
+3. Configure as variáveis de ambiente nas configurações do site
 
-## Valor Educacional
+## Estrutura do Banco de Dados (Firestore)
 
-O xadrez é reconhecido por desenvolver várias habilidades cognitivas importantes:
+### Coleção `players`
 
-- Pensamento estratégico e planejamento
-- Concentração e foco
-- Tomada de decisão
-- Visualização espacial
-- Resolução de problemas
-- Paciência e perseverança
+```
+players/{userId}
+  - uid: string
+  - displayName: string
+  - email: string
+  - rating: number
+  - wins: number
+  - losses: number
+  - draws: number
+  - createdAt: timestamp
+```
 
-Este aplicativo foi projetado para ser uma ferramenta educacional que torna o aprendizado do xadrez acessível e divertido para estudantes de todas as idades.
+### Coleção `games`
+
+```
+games/{gameId}
+  - whitePlayerId: string
+  - blackPlayerId: string
+  - result: string ('white', 'black', 'draw', 'ongoing')
+  - moves: array
+  - pgn: string
+  - fen: string
+  - startTime: timestamp
+  - endTime: timestamp
+```
+
+## Regras de Segurança do Firestore
+
+Adicione estas regras ao seu Firestore para proteger os dados:
+
+```
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /players/{userId} {
+      allow read;
+      allow write: if request.auth != null && request.auth.uid == userId;
+    }
+    match /games/{gameId} {
+      allow read;
+      allow write: if request.auth != null;
+    }
+  }
+}
+```
+
+## Tecnologias
+
+- React
+- Firebase (Auth e Firestore)
+- Chess.js (lógica do xadrez)
+- react-chessboard (interface do tabuleiro)
+
+## Contribuição
+
+1. Faça um fork do projeto
+2. Crie uma branch para sua feature (`git checkout -b feature/nova-feature`)
+3. Commit suas mudanças (`git commit -m 'Adiciona nova feature'`)
+4. Push para a branch (`git push origin feature/nova-feature`)
+5. Abra um Pull Request
 
 ## Licença
 
-Este projeto está licenciado sob a licença MIT - veja o arquivo LICENSE para detalhes.
-
-## Contato
-
-Para dúvidas ou sugestões, entre em contato através do email: exemplo@email.com
+Este projeto está licenciado sob a Licença MIT - veja o arquivo [LICENSE](LICENSE) para detalhes.

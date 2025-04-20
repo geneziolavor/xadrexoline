@@ -1,0 +1,123 @@
+.game-info {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  min-width: 300px;
+  max-width: 400px;
+  width: 100%;
+}
+
+.game-info h3 {
+  color: #2F2F2F;
+  font-size: 1.3rem;
+  margin-top: 0;
+  margin-bottom: 1rem;
+  border-bottom: 2px solid #D4AF37;
+  padding-bottom: 0.5rem;
+}
+
+.status-section {
+  margin-bottom: 1.5rem;
+}
+
+.status {
+  font-weight: bold;
+  font-size: 1.2rem;
+  color: #2F2F2F;
+  margin-bottom: 0.5rem;
+}
+
+.current-player {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.current-player span {
+  font-weight: bold;
+}
+
+.current-player .w {
+  color: #333;
+}
+
+.current-player .b {
+  color: #2F2F2F;
+}
+
+.difficulty {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.difficulty-level {
+  font-weight: bold;
+  color: #8B4513;
+}
+
+.history-section {
+  margin-bottom: 1.5rem;
+  max-height: 200px;
+  overflow-y: auto;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  padding: 0.5rem;
+}
+
+.no-moves {
+  color: #777;
+  font-style: italic;
+  text-align: center;
+}
+
+.move-history {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.move {
+  background-color: #f5f5f5;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-family: monospace;
+  font-size: 0.9rem;
+}
+
+.buttons-section {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.new-game-btn,
+.undo-btn {
+  background: linear-gradient(135deg, #D4AF37 0%, #C5A028 100%);
+  color: #2f2f2f;
+  border: none;
+  padding: 0.8rem 1rem;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.new-game-btn:hover,
+.undo-btn:hover {
+  background: linear-gradient(135deg, #C5A028 0%, #B59018 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.undo-btn {
+  background: linear-gradient(135deg, #f0f0f0 0%, #e0e0e0 100%);
+  color: #444;
+}
+
+.undo-btn:hover {
+  background: linear-gradient(135deg, #e0e0e0 0%, #d0d0d0 100%);
+} 

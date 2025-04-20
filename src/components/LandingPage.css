@@ -1,0 +1,217 @@
+.landing-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f8f8f8 0%, #e8e8e8 100%);
+  color: #2F2F2F;
+  font-family: 'Arial', sans-serif;
+  display: flex;
+  flex-direction: column;
+}
+
+.landing-content {
+  flex: 1;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.landing-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.landing-header h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  color: #2F2F2F;
+}
+
+.landing-header .accent {
+  color: #D4AF37;
+  position: relative;
+}
+
+.landing-header .accent::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, #D4AF37 0%, transparent 100%);
+}
+
+.landing-header .subtitle {
+  font-size: 1.3rem;
+  color: #555;
+}
+
+.landing-header .school-name {
+  font-size: 1.6rem;
+  color: #D4AF37;
+  margin: 1rem 0 0.5rem;
+  text-align: center;
+  font-weight: bold;
+}
+
+.landing-header .teacher-name {
+  font-size: 1.2rem;
+  color: #555;
+  margin: 0.5rem 0 1.5rem;
+  text-align: center;
+}
+
+.features-section {
+  margin-bottom: 4rem;
+}
+
+.features-section h2,
+.educational-section h2 {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  color: #2F2F2F;
+  position: relative;
+  display: inline-block;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.features-section h2::after,
+.educational-section h2::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, transparent 0%, #D4AF37 50%, transparent 100%);
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 2rem;
+}
+
+@media (min-width: 768px) {
+  .features-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 992px) {
+  .features-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.feature-card {
+  background: white;
+  border-radius: 10px;
+  padding: 2rem;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.feature-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+.feature-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.feature-card h3 {
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  color: #2F2F2F;
+}
+
+.feature-card p {
+  color: #555;
+  line-height: 1.5;
+}
+
+.educational-section {
+  margin-bottom: 4rem;
+  background: white;
+  padding: 3rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.educational-section p {
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 1.1rem;
+  color: #444;
+  line-height: 1.6;
+}
+
+.benefits-list {
+  max-width: 600px;
+  margin: 0 auto;
+  list-style-type: none;
+  padding: 0;
+}
+
+.benefits-list li {
+  padding: 0.8rem 0;
+  padding-left: 2rem;
+  position: relative;
+  border-bottom: 1px solid #eee;
+  color: #333;
+}
+
+.benefits-list li:last-child {
+  border-bottom: none;
+}
+
+.benefits-list li::before {
+  content: '♚';
+  position: absolute;
+  left: 0;
+  color: #D4AF37;
+  font-size: 1.2rem;
+}
+
+.start-section {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.start-button {
+  background: linear-gradient(135deg, #D4AF37 0%, #C5A028 100%);
+  color: #2f2f2f;
+  border: none;
+  padding: 1rem 3rem;
+  border-radius: 50px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.start-button:hover {
+  background: linear-gradient(135deg, #C5A028 0%, #B59018 100%);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+}
+
+.landing-footer {
+  margin-top: 2rem;
+  padding: 1rem 0;
+  border-top: 1px solid #e5e5e5;
+  font-size: 1rem;
+  color: #666;
+  text-align: center;
+  font-weight: bold;
+}
+
+.landing-footer p {
+  margin: 0.5rem 0;
+} 

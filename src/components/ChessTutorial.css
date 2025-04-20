@@ -1,0 +1,214 @@
+.tutorial-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(245, 245, 245, 0.98);
+  z-index: 1000;
+  overflow-y: auto;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.tutorial-container h2 {
+  color: #2F2F2F;
+  font-size: 2.2rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  border-bottom: 3px solid #D4AF37;
+  padding-bottom: 0.8rem;
+  width: fit-content;
+}
+
+.tutorial-intro {
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 1.2rem;
+  color: #555;
+}
+
+.tutorial-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  max-width: 800px;
+  width: 100%;
+  margin-bottom: 2rem;
+}
+
+@media (min-width: 768px) {
+  .tutorial-list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.tutorial-card {
+  background: white;
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+  cursor: pointer;
+  border: 2px solid transparent;
+}
+
+.tutorial-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+  border-color: #D4AF37;
+}
+
+.tutorial-card h3 {
+  color: #2F2F2F;
+  margin-top: 0;
+  margin-bottom: 1rem;
+  font-size: 1.4rem;
+}
+
+.tutorial-card p {
+  color: #555;
+  margin-bottom: 1.5rem;
+  font-size: 0.95rem;
+}
+
+.tutorial-card button {
+  background: linear-gradient(135deg, #D4AF37 0%, #C5A028 100%);
+  color: #2f2f2f;
+  border: none;
+  padding: 0.7rem 1.5rem;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 100%;
+}
+
+.tutorial-card button:hover {
+  background: linear-gradient(135deg, #C5A028 0%, #B59018 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.close-tutorial {
+  background: linear-gradient(135deg, #2F2F2F 0%, #444444 100%);
+  color: white;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  margin-top: 1.5rem;
+}
+
+.close-tutorial:hover {
+  background: linear-gradient(135deg, #444444 0%, #555555 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
+}
+
+/* Active tutorial styles */
+.active-tutorial {
+  justify-content: flex-start;
+}
+
+.tutorial-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 2rem;
+  width: 100%;
+}
+
+.tutorial-navigation {
+  background-color: #f5f5f5;
+  padding: 0.5rem 1rem;
+  border-radius: 50px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  font-weight: bold;
+  color: #555;
+}
+
+.tutorial-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  width: 100%;
+  max-width: 1000px;
+}
+
+@media (min-width: 992px) {
+  .tutorial-content {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+}
+
+.tutorial-board {
+  border: 15px solid #8B4513;
+  border-radius: 5px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+  background: linear-gradient(135deg, #A0522D 0%, #8B4513 100%);
+}
+
+.tutorial-lesson {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  flex: 1;
+}
+
+.tutorial-lesson h3 {
+  color: #2F2F2F;
+  font-size: 1.5rem;
+  margin-top: 0;
+  margin-bottom: 1rem;
+  border-bottom: 2px solid #D4AF37;
+  padding-bottom: 0.5rem;
+}
+
+.tutorial-lesson p {
+  color: #333;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.tutorial-buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.tutorial-buttons button {
+  background: linear-gradient(135deg, #D4AF37 0%, #C5A028 100%);
+  color: #2f2f2f;
+  border: none;
+  padding: 0.7rem 1.5rem;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  flex: 1;
+}
+
+.tutorial-buttons button:hover:not(:disabled) {
+  background: linear-gradient(135deg, #C5A028 0%, #B59018 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.tutorial-buttons button:disabled {
+  background: #e0e0e0;
+  color: #999;
+  cursor: not-allowed;
+  box-shadow: none;
+} 

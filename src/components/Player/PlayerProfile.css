@@ -1,0 +1,124 @@
+.player-profile {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.player-profile.loading,
+.player-profile.error {
+  text-align: center;
+  padding: 40px;
+  color: #666;
+}
+
+.player-profile.error {
+  color: #d32f2f;
+}
+
+.profile-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #eee;
+}
+
+.profile-header h2 {
+  margin: 0;
+  color: #2F2F2F;
+  font-size: 1.8rem;
+}
+
+.rating {
+  background: linear-gradient(135deg, #D4AF37 0%, #C5A028 100%);
+  color: #fff;
+  padding: 8px 15px;
+  border-radius: 20px;
+  font-weight: bold;
+}
+
+.rating-label {
+  margin-right: 5px;
+  font-size: 0.9rem;
+}
+
+.rating-value {
+  font-size: 1.2rem;
+}
+
+.profile-stats {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 25px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #eee;
+}
+
+.stat-item {
+  text-align: center;
+}
+
+.stat-value {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #2F2F2F;
+}
+
+.stat-label {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.recent-games h3 {
+  margin-top: 0;
+  margin-bottom: 15px;
+  color: #2F2F2F;
+}
+
+.no-games {
+  text-align: center;
+  color: #888;
+  font-style: italic;
+}
+
+.games-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.game-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.game-item:last-child {
+  border-bottom: none;
+}
+
+.game-result .win {
+  color: #4caf50;
+  font-weight: bold;
+}
+
+.game-result .loss {
+  color: #f44336;
+  font-weight: bold;
+}
+
+.game-result .draw {
+  color: #ff9800;
+  font-weight: bold;
+}
+
+.game-date {
+  font-size: 0.9rem;
+  color: #777;
+} 

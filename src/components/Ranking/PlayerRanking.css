@@ -1,0 +1,113 @@
+.player-ranking {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.player-ranking h2 {
+  text-align: center;
+  color: #2F2F2F;
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+.player-ranking.loading,
+.player-ranking.error {
+  text-align: center;
+  padding: 40px;
+  color: #666;
+}
+
+.player-ranking.error {
+  color: #d32f2f;
+}
+
+.no-players {
+  text-align: center;
+  color: #888;
+  font-style: italic;
+  padding: 20px;
+}
+
+.ranking-table-container {
+  overflow-x: auto;
+}
+
+.ranking-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.ranking-table th,
+.ranking-table td {
+  padding: 12px;
+  text-align: center;
+  border-bottom: 1px solid #eee;
+}
+
+.ranking-table th {
+  background-color: #f5f5f5;
+  font-weight: bold;
+  color: #444;
+  position: sticky;
+  top: 0;
+}
+
+.ranking-table tr:hover {
+  background-color: #f9f9f9;
+}
+
+.ranking-table .top-rank {
+  background-color: rgba(212, 175, 55, 0.1);
+}
+
+.ranking-table .top-rank:hover {
+  background-color: rgba(212, 175, 55, 0.2);
+}
+
+.ranking-table .position {
+  font-weight: bold;
+  color: #444;
+}
+
+.ranking-table tr:nth-child(1) .position {
+  color: gold;
+  font-size: 1.1rem;
+}
+
+.ranking-table tr:nth-child(2) .position {
+  color: silver;
+  font-size: 1.05rem;
+}
+
+.ranking-table tr:nth-child(3) .position {
+  color: #cd7f32; /* Bronze */
+  font-size: 1rem;
+}
+
+.ranking-table .player-name {
+  text-align: left;
+  font-weight: bold;
+  color: #2F2F2F;
+}
+
+.ranking-table .rating {
+  font-weight: bold;
+  color: #D4AF37;
+}
+
+.ranking-table .wins {
+  color: #4caf50;
+}
+
+.ranking-table .draws {
+  color: #ff9800;
+}
+
+.ranking-table .losses {
+  color: #f44336;
+} 

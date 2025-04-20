@@ -2,7 +2,6 @@
   "name": "chess-app",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://seunomeusuario.github.io/xadrez-online",
   "dependencies": {
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^5.16.5",

@@ -10,7 +10,7 @@ import {
 import './ChallengeRoom.css';
 
 const ChallengeRoom = () => {
-  const { currentUser, playerData } = useAuth();
+  const { currentUser } = useAuth();
   const [students, setStudents] = useState([]);
   const [challenges, setChallenges] = useState([]);
   const [selectedStudent, setSelectedStudent] = useState(null);

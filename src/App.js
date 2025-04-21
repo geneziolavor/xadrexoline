@@ -8,6 +8,10 @@ import ChessTutorial from './components/ChessTutorial';
 import ChessAI from './components/ChessAI';
 import LandingPage from './components/LandingPage';
 import FullScreenButton from './components/FullScreenButton';
+import RegistrationForm from './components/RegistrationForm';
+import ChallengeRoom from './components/ChallengeRoom';
+import RankingTable from './components/RankingTable';
+import { AuthProvider } from './firebase/auth';
 
 function App() {
   const [game, setGame] = useState(new Chess());
@@ -17,6 +21,8 @@ function App() {
   const [currentPlayer, setCurrentPlayer] = useState('w');
   const [isThinking, setIsThinking] = useState(false);
   const [showLandingPage, setShowLandingPage] = useState(true);
+  const [currentPage, setCurrentPage] = useState('landing'); // 'landing', 'game', 'register', 'challenges', 'ranking'
+  
   const chessAIRef = useRef(null);
   const boardContainerRef = useRef(null);
   
@@ -259,88 +265,147 @@ function App() {
   // Function to start the app from landing page
   function startApp() {
     setShowLandingPage(false);
+    setCurrentPage('game');
   }
 
   // Function to return to landing page
   function backToLandingPage() {
     setShowLandingPage(true);
+    setCurrentPage('landing');
+  }
+  
+  // Funções para navegação entre páginas
+  function goToRegistration() {
+    setCurrentPage('register');
+    setShowLandingPage(false);
+  }
+  
+  function goToChallenges() {
+    setCurrentPage('challenges');
+    setShowLandingPage(false);
+  }
+  
+  function goToRanking() {
+    setCurrentPage('ranking');
+    setShowLandingPage(false);
+  }
+  
+  function goToGame() {
+    setCurrentPage('game');
+    setShowLandingPage(false);
+    setShowSettings(true);
   }
 
   // If showing landing page, render only that
   if (showLandingPage) {
-    return <LandingPage onStart={startApp} />;
+    return (
+      <AuthProvider>
+        <LandingPage 
+          onStart={startApp} 
+          onRegister={goToRegistration}
+          onChallenges={goToChallenges}
+          onRanking={goToRanking}
+        />
+      </AuthProvider>
+    );
+  }
+  
+  // Renderizar a página conforme a seleção atual
+  let pageContent;
+  
+  if (currentPage === 'register') {
+    pageContent = (
+      <div className="page-container">
+        <RegistrationForm />
+        <div className="navigation-buttons">
+          <button onClick={goToGame}>Voltar ao Jogo</button>
+          <button onClick={goToChallenges}>Ir para Desafios</button>
+          <button onClick={goToRanking}>Ver Ranking</button>
+          <button onClick={backToLandingPage}>Voltar à Tela Inicial</button>
+        </div>
+      </div>
+    );
+  } else if (currentPage === 'challenges') {
+    pageContent = (
+      <div className="page-container">
+        <ChallengeRoom />
+        <div className="navigation-buttons">
+          <button onClick={goToGame}>Voltar ao Jogo</button>
+          <button onClick={goToRegistration}>Ir para Cadastro</button>
+          <button onClick={goToRanking}>Ver Ranking</button>
+          <button onClick={backToLandingPage}>Voltar à Tela Inicial</button>
+        </div>
+      </div>
+    );
+  } else if (currentPage === 'ranking') {
+    pageContent = (
+      <div className="page-container">
+        <RankingTable />
+        <div className="navigation-buttons">
+          <button onClick={goToGame}>Voltar ao Jogo</button>
+          <button onClick={goToRegistration}>Ir para Cadastro</button>
+          <button onClick={goToChallenges}>Ir para Desafios</button>
+          <button onClick={backToLandingPage}>Voltar à Tela Inicial</button>
+        </div>
+      </div>
+    );
+  } else {
+    // Jogo (padrão)
+    pageContent = (
+      <>
+        <header className="App-header">
+          <h1>Xadrez Online</h1>
+          {!showSettings && (
+            <div className="header-buttons">
+              <button onClick={() => setShowSettings(true)}>Mudar Modo de Jogo</button>
+              <button onClick={openTutorial}>Tutorial</button>
+              <button onClick={goToRegistration}>Cadastro no Campeonato</button>
+              <button onClick={goToChallenges}>Sala de Desafios</button>
+              <button onClick={goToRanking}>Ver Ranking</button>
+              <button onClick={backToLandingPage}>Voltar à Tela Inicial</button>
+            </div>
+          )}
+        </header>
+        
+        <main className="App-content">
+          {showSettings ? (
+            <GameSettings onStartGame={handleStartGame} />
+          ) : (
+            <div className="game-container">
+              <FullScreenButton targetRef={boardContainerRef} />
+              <div className="board-container" ref={boardContainerRef}>
+                <Chessboard
+                  position={game.fen()}
+                  onSquareClick={handleSquareClick}
+                  customSquareStyles={getCustomSquareStyles()}
+                />
+              </div>
+              
+              <div className="info-panel">
+                <GameInfo
+                  game={game}
+                  currentPlayer={currentPlayer}
+                  onNewGame={startNewGame}
+                  onUndoMove={undoLastMove}
+                  isThinking={isThinking}
+                  gameMode={gameSettings?.mode}
+                />
+              </div>
+            </div>
+          )}
+          
+          {showTutorial && <ChessTutorial onClose={closeTutorial} />}
+        </main>
+      </>
+    );
   }
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1>Xadrez Online</h1>
-        {!showSettings && (
-          <div className="header-buttons">
-            <button onClick={() => setShowSettings(true)}>Mudar Modo de Jogo</button>
-            <button onClick={openTutorial}>Tutorial</button>
-            <button onClick={backToLandingPage}>Voltar à Tela Inicial</button>
-          </div>
-        )}
-      </header>
-      
-      <main className="App-main">
-        {showSettings ? (
-          <GameSettings 
-            onStartGame={handleStartGame} 
-            onShowTutorial={openTutorial} 
-          />
-        ) : (
-          <>
-            <div className="chessboard-container" ref={boardContainerRef}>
-              <div className="board-controls">
-                <FullScreenButton targetRef={boardContainerRef} />
-              </div>
-              
-              <div className="board-and-info">
-                <div className="board-wrapper">
-                  <Chessboard 
-                    id="mainBoard"
-                    position={game.fen()} 
-                    boardWidth={boardContainerRef.current?.offsetWidth > 800 ? 700 : 500}
-                    areArrowsAllowed={true}
-                    showBoardNotation={true}
-                    customBoardStyle={{
-                      borderRadius: '4px',
-                      boxShadow: '0 5px 15px rgba(0, 0, 0, 0.5)'
-                    }}
-                    customDarkSquareStyle={{ backgroundColor: '#2F2F2F' }}
-                    customLightSquareStyle={{ backgroundColor: '#E8E8E8' }}
-                    customSquareStyles={getCustomSquareStyles()}
-                    onSquareClick={handleSquareClick}
-                    arePiecesDraggable={false}
-                    showPossibleMoves={false}
-                  />
-                  
-                  {isThinking && (
-                    <div className="thinking-indicator">
-                      <p>IA pensando...</p>
-                    </div>
-                  )}
-                </div>
-                
-                <div className="game-info-wrapper">
-                  <GameInfo 
-                    game={game}
-                    currentPlayer={currentPlayer}
-                    gameSettings={gameSettings}
-                    onNewGame={startNewGame}
-                    onUndoMove={undoLastMove}
-                  />
-                </div>
-              </div>
-            </div>
-          </>
-        )}
-      </main>
-      
-      {showTutorial && <ChessTutorial onClose={closeTutorial} />}
-    </div>
+    <AuthProvider>
+      <div className="App">
+        {pageContent}
+      </div>
+    </AuthProvider>
   );
 }
 

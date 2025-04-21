@@ -1,7 +1,7 @@
 import React from 'react';
 import './LandingPage.css';
 
-const LandingPage = ({ onStart }) => {
+const LandingPage = ({ onStart, onRegister, onChallenges, onRanking }) => {
   return (
     <div className="landing-page">
       <div className="landing-content">
@@ -41,7 +41,26 @@ const LandingPage = ({ onStart }) => {
           </div>
         </div>
         
-        <div className="educational-section">
+        <div className="new-features-section">
+          <h2>Campeonato de Xadrez Online</h2>
+          <p>Participe do nosso campeonato escolar de xadrez online!</p>
+          
+          <div className="features-grid">
+            <div className="feature-card">
+              <div className="feature-icon">🏆</div>
+              <h3>Competição</h3>
+              <p>Desafie outros estudantes e conquiste o título de mestre do xadrez</p>
+            </div>
+            
+            <div className="feature-card">
+              <div className="feature-icon">📊</div>
+              <h3>Ranking</h3>
+              <p>Acompanhe sua posição no ranking e evolua seus pontos</p>
+            </div>
+          </div>
+        </div>
+        
+        <div className="benefits-section">
           <h2>Plataforma Educacional</h2>
           <p>
             Este aplicativo foi desenvolvido com foco educacional para ajudar estudantes a 
@@ -57,9 +76,21 @@ const LandingPage = ({ onStart }) => {
         </div>
         
         <div className="start-section">
-          <button className="start-button" onClick={onStart}>
-            Iniciar Aplicativo
+          <button className="start-button primary" onClick={onStart}>
+            Jogar Xadrez
           </button>
+          
+          <div className="secondary-buttons">
+            <button className="start-button secondary" onClick={onRegister}>
+              Registrar no Campeonato
+            </button>
+            <button className="start-button secondary" onClick={onChallenges}>
+              Sala de Desafios
+            </button>
+            <button className="start-button secondary" onClick={onRanking}>
+              Ver Ranking
+            </button>
+          </div>
         </div>
       </div>
       

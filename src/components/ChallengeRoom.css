@@ -1,0 +1,389 @@
+.challenge-room {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 1.5rem;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.challenge-room h2 {
+  color: #2e2e2e;
+  font-size: 1.8rem;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.error-message, .success-message {
+  padding: 10px;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.error-message {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+
+.success-message {
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+.tab-navigation {
+  display: flex;
+  border-bottom: 1px solid #ddd;
+  margin-bottom: 1.5rem;
+}
+
+.tab-button {
+  padding: 0.75rem 1.5rem;
+  background: none;
+  border: none;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #555;
+  cursor: pointer;
+  position: relative;
+  transition: color 0.3s;
+}
+
+.tab-button.active {
+  color: #8B4513;
+}
+
+.tab-button.active::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  height: 3px;
+  width: 100%;
+  background-color: #8B4513;
+}
+
+.challenge-count {
+  display: inline-block;
+  background-color: #8B4513;
+  color: white;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  font-size: 0.8rem;
+  line-height: 20px;
+  text-align: center;
+  margin-left: 5px;
+}
+
+.search-container {
+  margin-bottom: 1.5rem;
+}
+
+.search-input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.search-input:focus {
+  border-color: #8B4513;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(139, 69, 19, 0.2);
+}
+
+.loading, .empty-list {
+  text-align: center;
+  padding: 2rem;
+  color: #666;
+}
+
+.students-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1rem;
+}
+
+.student-card {
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  padding: 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+}
+
+.student-info {
+  flex: 1;
+}
+
+.student-info h3 {
+  margin: 0 0 0.5rem 0;
+  color: #333;
+}
+
+.student-info p {
+  margin: 0.25rem 0;
+  color: #555;
+}
+
+.student-actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.view-button {
+  flex: 1;
+  padding: 0.5rem;
+  background-color: #e7e7e7;
+  color: #333;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.view-button:hover {
+  background-color: #d9d9d9;
+}
+
+.challenge-button {
+  flex: 1;
+  padding: 0.5rem;
+  background-color: #8B4513;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.challenge-button:hover {
+  background-color: #6F3709;
+}
+
+.challenge-button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.challenges-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.challenges-list h3 {
+  margin: 0;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #eee;
+  color: #333;
+}
+
+.challenge-card {
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.challenge-card.accepted {
+  background-color: #e6f4ea;
+  border-left: 4px solid #34a853;
+}
+
+.challenge-card.rejected {
+  background-color: #f8f8f8;
+  border-left: 4px solid #ccc;
+  opacity: 0.8;
+}
+
+.challenge-card.completed {
+  background-color: #e8f0fe;
+  border-left: 4px solid #4285f4;
+}
+
+.challenge-info {
+  flex: 1;
+}
+
+.challenge-info p {
+  margin: 0.25rem 0;
+}
+
+.challenge-info small {
+  color: #777;
+}
+
+.challenge-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.accept-button {
+  padding: 0.5rem 1rem;
+  background-color: #34a853;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.accept-button:hover {
+  background-color: #2a8542;
+}
+
+.reject-button {
+  padding: 0.5rem 1rem;
+  background-color: #ea4335;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.reject-button:hover {
+  background-color: #d33426;
+}
+
+.awaiting-response {
+  color: #777;
+  font-style: italic;
+}
+
+.play-button {
+  padding: 0.5rem 1rem;
+  background-color: #4285f4;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.play-button:hover {
+  background-color: #3367d6;
+}
+
+/* Modal de detalhes do estudante */
+.student-modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+}
+
+.student-modal {
+  background-color: white;
+  border-radius: 8px;
+  padding: 1.5rem;
+  width: 90%;
+  max-width: 500px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.student-modal h3 {
+  margin-top: 0;
+  color: #333;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.student-details {
+  margin-bottom: 1.5rem;
+}
+
+.student-details p {
+  margin: 0.5rem 0;
+}
+
+.stats-list {
+  list-style: none;
+  padding-left: 1rem;
+  margin: 0.5rem 0;
+}
+
+.stats-list li {
+  margin: 0.25rem 0;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.close-button {
+  flex: 1;
+  padding: 0.75rem;
+  background-color: #e7e7e7;
+  color: #333;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.close-button:hover {
+  background-color: #d9d9d9;
+}
+
+.auth-message {
+  text-align: center;
+  padding: 2rem;
+}
+
+.auth-message h2 {
+  margin-top: 0;
+  color: #333;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+  .challenge-room {
+    padding: 1rem;
+    margin: 0 0.5rem;
+  }
+  
+  .tab-button {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+  }
+  
+  .students-list {
+    grid-template-columns: 1fr;
+  }
+  
+  .challenge-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .challenge-actions {
+    margin-top: 1rem;
+    width: 100%;
+  }
+  
+  .student-modal {
+    width: 95%;
+    max-width: none;
+    margin: 0 1rem;
+  }
+} 
